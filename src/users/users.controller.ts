@@ -7,23 +7,28 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UsersService } from './users.service';
 
-@Controller('users')
+@Controller('auth')
 export class UsersController {
-  @Post()
-  signup(@Body() body: any): any {
-    // create a new user and sign in
+  constructor(private usersService: UsersService) {}
+
+  @Post('/signup')
+  createUser(@Body() body: CreateUserDto): any {
+    console.log(`Create a new user: ${JSON.stringify(body)}`);
+
+    const { name, email, password, role } = body;
+    return this.usersService.create(name, email, password, role);
+  }
+
+  @Post('/signin')
+  authenticateUser(@Body() body: any): any {
     console.log(body);
     return {};
   }
 
-  @Post()
-  signin(@Body() body: any): any {
-    console.log(body);
-    return {};
-  }
-
-  @Get()
+  @Get('users')
   getUsers(): any[] {
     return ['a', 'b', 'c'];
   }
@@ -32,11 +37,6 @@ export class UsersController {
   getUser(@Param('id') userId: number): any {
     console.log(`Get a user: ${userId}`);
     return null;
-  }
-
-  @Post()
-  createUser(@Body() body: any): void {
-    console.log(`Create a new user: ${JSON.stringify(body)}`);
   }
 
   @Put(':id')
