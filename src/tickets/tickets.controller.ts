@@ -7,12 +7,16 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { TicketsService } from './tickets.service';
+import { Ticket } from './ticket.entity';
 
 @Controller('tickets')
 export class TicketsController {
+  constructor(private ticketsService: TicketsService) {}
+
   @Get()
-  getTickets(): any[] {
-    return [];
+  getTickets(): Promise<Ticket[]> {
+    return this.ticketsService.findAll();
   }
 
   @Get('/:id')

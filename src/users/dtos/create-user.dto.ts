@@ -13,8 +13,4 @@ export class CreateUserDto {
 
   @IsEnum(Role)
   role: Role = Role.USER;
-
-  // createdAt: Date;
-  // updatedAt: Date;
-  // deletedAt: Date;
 }

@@ -1,19 +1,5 @@
 import { IsEnum, IsOptional, IsString } from 'class-validator';
-
-enum Priority {
-  VERY_LOW = 'very low',
-  LOW = 'low',
-  NORMAL = 'normal',
-  HIGH = 'high',
-  VERY_HIGH = 'very high',
-}
-
-enum Status {
-  TODO = 'TODO',
-  DESIGN = 'DESIGN',
-  IN_PROGRESS = 'IN PROGRESS',
-
-}
+import { Priority, Status } from '../enums';
 
 class CreateTicketDto {
   @IsString()
@@ -23,15 +9,10 @@ class CreateTicketDto {
   description: string;
 
   @IsEnum(Priority)
+  @IsOptional()
   priority: Priority;
 
   @IsEnum(Status)
+  @IsOptional()
   status: Status;
-
-  // createdBy: User;
-  // linkedWith: Ticket;
-  // assignee: User;
-  // createdAt: Date;
-  // updatedAt: Date;
-  // deletedAt: Date;
 }

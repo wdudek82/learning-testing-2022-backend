@@ -1,6 +1,17 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { User } from '../users/user.entity';
+import { Priority, Status } from './enums';
 
-@Entity()
+@Entity({ name: 'tickets' })
 export class Ticket {
   @PrimaryGeneratedColumn()
   id: number;
@@ -11,26 +22,51 @@ export class Ticket {
   @Column()
   description: string;
 
-  // @Column()
-  // priority: Priority;
+  @Column({
+    type: 'enum',
+    enum: Priority,
+    default: Priority.NORMAL,
+  })
+  priority: Priority;
 
-  // @Column()
-  // status: Status;
+  @Column({
+    type: 'enum',
+    enum: Status,
+    default: Status.TODO,
+  })
+  status: Status;
 
-  // @Column()
-  // assignedTo: User;
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'assigneeId' })
+  assignee: User;
 
-  // @Column()
-  // createdBy: User;
+  @Column({ nullable: true })
+  assigneeId: number;
 
-  // @Column()
-  // @OneToMany()
-  // ticketId: number;
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'authorId' })
+  author: User;
 
-  // @Column()
-  // attachments: Attachemnts[];
+  @Column()
+  authorId: number;
 
-  // createAt: Date;
-  // updatedAt: Date;
-  // deletedAt: Date;
+  @Column({ nullable: true })
+  relatedTicketId?: number;
+
+  @ManyToOne(() => Ticket, (ticket) => ticket.id)
+  @JoinColumn({ name: 'relatedTicketId' })
+  relatedTicket?: Ticket;
+
+  // TODO: Create entity "Attachment".
+  // @Column()
+  // attachments: Attachments[];
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
+
+  @DeleteDateColumn({ name: 'deleted_at' })
+  deletedAt: Date;
 }
