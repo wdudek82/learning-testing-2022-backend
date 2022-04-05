@@ -20,9 +20,9 @@ export class TicketsController {
   }
 
   @Get('/:id')
-  getTicket(@Param('id') ticketId: number): any {
-    console.log(`get ticket by id: ${ticketId}`);
-    return null;
+  getTicket(@Param('id') id: string): any {
+    console.log(`get ticket by id: ${id}`);
+    return this.ticketsService.findById(+id);
   }
 
   @Post()
@@ -36,7 +36,8 @@ export class TicketsController {
   }
 
   @Delete('/:id')
-  deleteTicket(@Param('id') ticketId: number): void {
-    console.log(`Delete a ticket by id: ${ticketId}`);
+  deleteTicket(@Param('id') id: string): Promise<Ticket> {
+    console.log(`Delete a ticket by id: ${id}`);
+    return this.ticketsService.remove(+id);
   }
 }

@@ -1,19 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { Ticket } from './ticket.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class TicketsService {
   constructor(@InjectRepository(Ticket) private repo: Repository<Ticket>) {}
 
-  async findAll(): Promise<Ticket[]> {
-    return await this.repo.find();
+  findAll(title = ''): Promise<Ticket[]> {
+    return this.repo.find();
   }
 
-  async findById(id: number): Promise<Ticket | null> {
-    // let ticket = await this.repo.findOne({ id });
-    // return ticket;
-    return Promise.resolve(null);
+  findById(id: number): Promise<Ticket | null> {
+    const ticket = this.repo.findOneBy({ id });
+    return ticket;
+  }
+
+  update() {}
+
+  async remove(id: number): Promise<Ticket> {
+    const ticket = await this.repo.findOneBy({ id });
+    if (ticket) {
+      return this.repo.remove(ticket);
+    }
   }
 }
