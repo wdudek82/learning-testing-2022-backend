@@ -10,6 +10,7 @@ import {
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
+import { UpdateResult } from 'typeorm';
 
 @Controller('auth')
 export class UsersController {
@@ -41,8 +42,12 @@ export class UsersController {
   }
 
   @Put('/users/:id')
-  updateUser(@Body() body: any, @Param('id') userId: number): void {
-    console.log(`Update a new user: ${userId} | ${JSON.stringify(body)}`);
+  updateUser(
+    @Body() body: any,
+    @Param('id') id: number,
+  ): Promise<User> {
+    console.log(`Update a new user: ${id} | ${JSON.stringify(body)}`);
+    return this.usersService.update(+id, body);
   }
 
   @Delete('/users/:id')

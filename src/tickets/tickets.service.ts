@@ -16,7 +16,9 @@ export class TicketsService {
     return ticket;
   }
 
-  update() {}
+  update(id: number, updateTicketDto: any): Promise<Ticket> {
+    return Promise.resolve(null);
+  }
 
   async remove(id: number): Promise<Ticket> {
     const ticket = await this.repo.findOneBy({ id });

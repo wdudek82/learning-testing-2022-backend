@@ -36,19 +36,26 @@ export class Ticket {
   })
   status: Status;
 
-  @ManyToOne(() => User, (user) => user.id)
-  @JoinColumn({ name: 'assigneeId' })
-  assignee: User;
 
-  @Column({ nullable: true })
-  assigneeId: number;
-
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.id, {
+    onDelete: 'CASCADE',
+    onUpdate: 'NO ACTION',
+  })
   @JoinColumn({ name: 'authorId' })
   author: User;
 
   @Column()
   authorId: number;
+
+  @ManyToOne(() => User, (user) => user.id, {
+    onDelete: 'SET NULL',
+    onUpdate: 'NO ACTION',
+  })
+  @JoinColumn({ name: 'assigneeId' })
+  assignee: User;
+
+  @Column({ nullable: true })
+  assigneeId: number;
 
   @Column({ nullable: true })
   relatedTicketId?: number;

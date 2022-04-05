@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { User } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Role } from './enums';
@@ -27,7 +27,15 @@ export class UsersService {
     return this.repo.find();
   }
 
-  update() {}
+  async update(id: number, attrs: Partial<User>): Promise<User> {
+    const user = await this.repo.findOneBy({ id });
+    if (!user) {
+      throw new Error('user not found');
+    }
+    // return this.repo.update(user, attrs);
+    Object.assign(user, attrs);
+    return this.repo.save(user);
+  }
 
   async remove(id: number): Promise<void> {
     const user = await this.repo.findOneBy({ id });
