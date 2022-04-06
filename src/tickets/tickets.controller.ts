@@ -5,7 +5,7 @@ import {
   Get,
   Param,
   Post,
-  Put,
+  Patch,
   Query,
 } from '@nestjs/common';
 import { TicketsService } from './tickets.service';
@@ -52,8 +52,8 @@ export class TicketsController {
     );
   }
 
-  @Put('/:id')
-  updateTicket(@Body() body: any, @Param('id') id: string): Promise<Ticket> {
+  @Patch('/:id')
+  updateTicket(@Param('id') id: string, @Body() body: any): Promise<Ticket> {
     return this.ticketsService.update(+id, body);
   }
 
@@ -64,8 +64,8 @@ export class TicketsController {
 
   @Post('/:ticketId/comments')
   addComment(
-    @Body() body: any,
     @Param('ticketId') ticketId: string,
+    @Body() body: any,
   ): Promise<any> {
     const { content, authorId } = body;
 
@@ -74,10 +74,10 @@ export class TicketsController {
     return this.commentsService.create(content, authorId, +ticketId);
   }
 
-  @Put('/:ticketId/comments/:commentId')
+  @Patch('/:ticketId/comments/:commentId')
   updateTicketComment(
-    @Body() body: any,
     @Param('commentId') commentId: string,
+    @Body() body: any,
   ): Promise<Comment> {
     return this.commentsService.update(+commentId, body);
   }
