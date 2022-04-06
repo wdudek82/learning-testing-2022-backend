@@ -9,9 +9,9 @@ import {
   Query,
 } from '@nestjs/common';
 import { TicketsService } from './tickets.service';
-import { Ticket } from './ticket.entity';
-import { Comment } from './comments/comment.entity';
-import { CommentsService } from './comments/comments.service';
+import { Ticket } from './entities/ticket.entity';
+import { Comment } from './entities/comment.entity';
+import { CommentsService } from './comments.service';
 
 @Controller('tickets')
 export class TicketsController {

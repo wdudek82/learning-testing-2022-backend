@@ -5,9 +5,9 @@ import { AppService } from './app.service';
 import { TicketsModule } from './tickets/tickets.module';
 import { UsersModule } from './users/users.module';
 import { MessagesModule } from './messages/messages.module';
-import { User } from './users/user.entity';
-import { Ticket } from './tickets/ticket.entity';
-import { Comment } from './tickets/comments/comment.entity';
+import { User } from './users/entities/user.entity';
+import { Ticket } from './tickets/entities/ticket.entity';
+import { Comment } from './tickets/entities/comment.entity';
 
 const sqliteConnection = {
   type: 'sqlite',

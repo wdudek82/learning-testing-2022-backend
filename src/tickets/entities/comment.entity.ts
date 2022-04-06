@@ -8,8 +8,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from '../../users/user.entity';
-import { Ticket } from '../ticket.entity';
+import { User } from '../../users/entities/user.entity';
+import { Ticket } from './ticket.entity';
 
 @Entity({ name: 'comments' })
 export class Comment {

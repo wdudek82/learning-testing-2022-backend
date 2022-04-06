@@ -9,9 +9,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from '../users/user.entity';
-import { Priority, Status } from './enums';
-import { Comment } from './comments/comment.entity';
+import { User } from '../../users/entities/user.entity';
+import { Priority, Status } from '../enums';
+import { Comment } from './comment.entity';
 
 @Entity({ name: 'tickets' })
 export class Ticket {
