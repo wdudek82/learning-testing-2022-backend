@@ -7,8 +7,9 @@ import { UsersModule } from './users/users.module';
 import { MessagesModule } from './messages/messages.module';
 import { User } from './users/user.entity';
 import { Ticket } from './tickets/ticket.entity';
+import { Comment } from './tickets/comments/comment.entity';
 
-const SQLITE_CONNECTION = {
+const sqliteConnection = {
   type: 'sqlite',
   database: 'db.sqlite',
   entities: [User, Ticket],
@@ -25,7 +26,7 @@ const postgresConnection = {
   database: 'learntesting',
   synchronize: true,
   logging: true,
-  entities: [User, Ticket],
+  entities: [User, Ticket, Comment],
   subscribers: [],
   migrations: [],
 };

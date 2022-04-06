@@ -1,5 +1,4 @@
 import {
-  AfterInsert,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -38,9 +37,4 @@ export class User {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
-
-  // @AfterInsert()
-  // logInsert() {
-  //   console.log(`Inserted User with id: ${this.id}`);
-  // }
 }

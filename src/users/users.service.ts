@@ -32,15 +32,24 @@ export class UsersService {
     if (!user) {
       throw new Error('user not found');
     }
-    // return this.repo.update(user, attrs);
     Object.assign(user, attrs);
     return this.repo.save(user);
   }
 
   async remove(id: number): Promise<void> {
     const user = await this.repo.findOneBy({ id });
-    if (user) {
-      await this.repo.remove(user);
+    if (!user) {
+      throw new Error('user not found');
     }
+    await this.repo.remove(user);
+  }
+
+  async softDelete(id: number): Promise<void> {
+    const user = await this.repo.findOneBy({ id });
+    if (!user) {
+      throw new Error('user not found');
+    }
+    user.deletedAt = new Date();
+    await this.repo.save(user);
   }
 }

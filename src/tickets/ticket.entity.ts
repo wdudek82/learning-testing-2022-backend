@@ -5,11 +5,13 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../users/user.entity';
 import { Priority, Status } from './enums';
+import { Comment } from './comments/comment.entity';
 
 @Entity({ name: 'tickets' })
 export class Ticket {
@@ -35,7 +37,6 @@ export class Ticket {
     default: Status.TODO,
   })
   status: Status;
-
 
   @ManyToOne(() => User, (user) => user.id, {
     onDelete: 'CASCADE',
@@ -64,9 +65,14 @@ export class Ticket {
   @JoinColumn({ name: 'relatedTicketId' })
   relatedTicket?: Ticket;
 
+  @OneToMany(() => Comment, (comment) => comment.ticket)
+  comments: Comment[];
+
   // TODO: Create entity "Attachment".
   // @Column()
   // attachments: Attachments[];
+  @Column({ nullable: true })
+  position: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

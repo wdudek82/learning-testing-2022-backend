@@ -10,7 +10,6 @@ import {
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
-import { UpdateResult } from 'typeorm';
 
 @Controller('auth')
 export class UsersController {
@@ -18,8 +17,6 @@ export class UsersController {
 
   @Post('/signup')
   createUser(@Body() body: CreateUserDto): Promise<User> {
-    console.log(`Create a new user: ${JSON.stringify(body)}`);
-
     const { name, email, password, role } = body;
     return this.usersService.create(name, email, password, role);
   }
@@ -37,22 +34,16 @@ export class UsersController {
 
   @Get('/users/:id')
   getUser(@Param('id') id: string): Promise<User> {
-    console.log(`Get a user: ${id}`);
     return this.usersService.findOne(+id);
   }
 
   @Put('/users/:id')
-  updateUser(
-    @Body() body: any,
-    @Param('id') id: number,
-  ): Promise<User> {
-    console.log(`Update a new user: ${id} | ${JSON.stringify(body)}`);
+  updateUser(@Body() body: any, @Param('id') id: number): Promise<User> {
     return this.usersService.update(+id, body);
   }
 
   @Delete('/users/:id')
-  deleteUser(@Param('id') id: string): Promise<void> {
-    console.log(`Delete a new user: ${id}`);
-    return this.usersService.remove(+id);
+  softDeleteUser(@Param('id') id: string): Promise<void> {
+    return this.usersService.softDelete(+id);
   }
 }
