@@ -1,18 +1,18 @@
 export enum Priority {
-  VERY_LOW,
-  LOW,
-  NORMAL,
-  HIGH,
-  VERY_HIGH,
+  VERY_LOW = 'very_low',
+  LOW = 'low',
+  NORMAL = 'normal',
+  HIGH = 'high',
+  VERY_HIGH = 'very_high',
 }
 
 export enum Status {
-  NEW,
-  TODO,
-  DESIGN,
-  IN_PROGRESS,
-  IN_REVIEW,
-  TESTING,
-  DONE,
-  CANCELLED,
+  NEW = 'new',
+  TO_DO = 'to_do',
+  DESIGN = 'design',
+  IN_PROGRESS = 'in_progress',
+  IN_REVIEW = 'in_review',
+  TESTING = 'testing',
+  DONE = 'done',
+  CANCELLED = 'cancelled',
 }
