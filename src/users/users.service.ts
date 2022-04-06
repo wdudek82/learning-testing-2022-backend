@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { Repository, UpdateResult } from 'typeorm';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Role } from './enums';
@@ -18,8 +18,11 @@ export class UsersService {
     return this.repo.save(user);
   }
 
-  findOne(id: number): Promise<User> {
-    const user = this.repo.findOneBy({ id });
+  async findOne(id: number): Promise<User> {
+    const user = await this.repo.findOneBy({ id });
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
     return user;
   }
 
@@ -30,7 +33,7 @@ export class UsersService {
   async update(id: number, attrs: Partial<User>): Promise<User> {
     const user = await this.repo.findOneBy({ id });
     if (!user) {
-      throw new Error('user not found');
+      throw new NotFoundException('user not found');
     }
     Object.assign(user, attrs);
     return this.repo.save(user);
@@ -39,7 +42,7 @@ export class UsersService {
   async remove(id: number): Promise<void> {
     const user = await this.repo.findOneBy({ id });
     if (!user) {
-      throw new Error('user not found');
+      throw new NotFoundException('user not found');
     }
     await this.repo.remove(user);
   }
@@ -47,7 +50,7 @@ export class UsersService {
   async softDelete(id: number): Promise<void> {
     const user = await this.repo.findOneBy({ id });
     if (!user) {
-      throw new Error('user not found');
+      throw new NotFoundException('user not found');
     }
     user.deletedAt = new Date();
     await this.repo.save(user);

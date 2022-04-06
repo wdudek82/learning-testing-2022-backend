@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Comment } from './entities/comment.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -19,7 +19,7 @@ export class CommentsService {
   async update(id: number, attrs: Partial<Comment>): Promise<Comment> {
     const comment = await this.repo.findOneBy({ id });
     if (!comment) {
-      throw new Error('comment not found');
+      throw new NotFoundException('comment not found');
     }
     Object.assign(comment, attrs);
     return this.repo.save(comment);
@@ -28,7 +28,7 @@ export class CommentsService {
   async remove(id: number): Promise<Comment> {
     const comment = await this.repo.findOneBy({ id });
     if (!comment) {
-      throw new Error('comment not found');
+      throw new NotFoundException('comment not found');
     }
     return await this.repo.remove(comment);
   }
@@ -36,7 +36,7 @@ export class CommentsService {
   async softDelete(id: number): Promise<Comment> {
     const comment = await this.repo.findOneBy({ id });
     if (!comment) {
-      throw new Error('comment not found');
+      throw new NotFoundException('comment not found');
     }
     comment.deletedAt = new Date();
     return this.repo.save(comment);

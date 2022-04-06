@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Ticket } from './entities/ticket.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -37,17 +37,20 @@ export class TicketsService {
   }
 
   async findById(id: number): Promise<Ticket | null> {
-    // return await this.repo.findOneBy({ id });
-    return await this.repo.findOne({
+    const ticket = await this.repo.findOne({
       where: { id },
       relations: ['comments'],
     });
+    if (!ticket) {
+      throw new NotFoundException('user not found');
+    }
+    return ticket;
   }
 
   async update(id: number, attrs: Partial<Ticket>): Promise<Ticket> {
     const ticket = await this.repo.findOneBy({ id });
     if (!ticket) {
-      throw new Error('ticket not found');
+      throw new NotFoundException('ticket not found');
     }
     Object.assign(ticket, attrs);
     return this.repo.save(ticket);
@@ -56,7 +59,7 @@ export class TicketsService {
   async remove(id: number): Promise<Ticket> {
     const ticket = await this.repo.findOneBy({ id });
     if (!ticket) {
-      throw new Error('ticket not found');
+      throw new NotFoundException('ticket not found');
     }
     return this.repo.remove(ticket);
   }
@@ -64,7 +67,7 @@ export class TicketsService {
   async softDelete(id: number): Promise<Ticket> {
     const ticket = await this.repo.findOneBy({ id });
     if (!ticket) {
-      throw new Error('ticket not found');
+      throw new NotFoundException('ticket not found');
     }
     ticket.deletedAt = new Date();
     return this.repo.save(ticket);
