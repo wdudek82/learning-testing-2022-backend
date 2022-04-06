@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Role } from '../enums';
+import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'users' })
 export class User {
@@ -20,6 +21,7 @@ export class User {
   name: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @Column({
@@ -36,5 +38,5 @@ export class User {
   updatedAt: Date;
 
   @DeleteDateColumn({ name: 'deleted_at' })
-  deletedAt: Date;
+  deletedAt?: Date;
 }

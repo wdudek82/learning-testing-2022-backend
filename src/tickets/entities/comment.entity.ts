@@ -17,6 +17,16 @@ export class Comment {
   id: number;
 
   @Column()
+  ticketId: number;
+
+  @ManyToOne(() => Ticket, (ticket) => ticket.comments, {
+    onUpdate: 'NO ACTION',
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'ticketId' })
+  ticket: Ticket;
+
+  @Column()
   content: string;
 
   @Column({ nullable: true })
@@ -29,16 +39,6 @@ export class Comment {
   @JoinColumn({ name: 'authorId' })
   author: User;
 
-  @Column()
-  ticketId: number;
-
-  @ManyToOne(() => Ticket, (ticket) => ticket.comments, {
-    onUpdate: 'NO ACTION',
-    onDelete: 'CASCADE',
-  })
-  @JoinColumn({ name: 'ticketId' })
-  ticket: Ticket;
-
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
@@ -46,5 +46,5 @@ export class Comment {
   updatedAt: Date;
 
   @DeleteDateColumn({ name: 'deleted_at' })
-  deletedAt: Date;
+  deletedAt?: Date;
 }

@@ -34,7 +34,7 @@ export class Ticket {
   @Column({
     type: 'enum',
     enum: Status,
-    default: Status.TODO,
+    default: Status.NEW,
   })
   status: Status;
 
@@ -71,6 +71,7 @@ export class Ticket {
   // TODO: Create entity "Attachment".
   // @Column()
   // attachments: Attachments[];
+
   @Column({ nullable: true })
   position: number;
 
@@ -81,5 +82,5 @@ export class Ticket {
   updatedAt: Date;
 
   @DeleteDateColumn({ name: 'deleted_at' })
-  deletedAt: Date;
+  deletedAt?: Date;
 }
