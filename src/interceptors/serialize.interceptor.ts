@@ -1,8 +1,17 @@
-import { CallHandler, ExecutionContext, NestInterceptor, UseInterceptors } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  NestInterceptor,
+  UseInterceptors,
+} from '@nestjs/common';
 import { map, Observable } from 'rxjs';
 import { plainToInstance } from 'class-transformer';
 
-export function Serialize(dto: any) {
+interface ClassConstructor {
+  new (...args: any[]): Record<string, any>;
+}
+
+export function Serialize(dto: ClassConstructor) {
   return UseInterceptors(new SerializeInterceptor(dto));
 }
 
