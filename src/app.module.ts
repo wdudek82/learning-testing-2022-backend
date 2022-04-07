@@ -21,7 +21,7 @@ const postgresConnection = {
   type: 'postgres',
   host: process.env.HOST || 'localhost',
   port: 5432,
-  username: process.env.USERNAME || 'learntesting',
+  username: process.env.USER || 'learntesting',
   password: process.env.PASSWORD || 'learntesting',
   database: process.env.DATABASE || 'learntesting',
   synchronize: process.env.SYNCHRONIZE || true,
