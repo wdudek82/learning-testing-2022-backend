@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Ticket } from './entities/ticket.entity';
-import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Ticket } from './entities/ticket.entity';
 import { Priority, Status } from './enums';
 
 @Injectable()

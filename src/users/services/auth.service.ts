@@ -1,11 +1,15 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { User } from '../entities/user.entity';
+import { randomBytes, scrypt as _scrypt } from 'crypto';
+import { promisify } from 'util';
+import {
+  BadRequestException,
+  Injectable,
+  NotImplementedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { User } from '../entities/user.entity';
 import { Repository } from 'typeorm';
 import { UsersService } from './users.service';
 import { CreateUserDto } from '../dtos/create-user.dto';
-import { promisify } from 'util';
-import { randomBytes, scrypt as _scrypt } from 'crypto';
 
 const scrypt = promisify(_scrypt);
 
@@ -28,5 +32,9 @@ export class AuthService {
     createUserDto.password = `${salt}.${hash.toString('hex')}`;
 
     return this.usersService.create(createUserDto);
+  }
+
+  async signin(): Promise<User> {
+    throw new NotImplementedException();
   }
 }

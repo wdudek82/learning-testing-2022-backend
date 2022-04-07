@@ -4,10 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TicketsModule } from './tickets/tickets.module';
 import { UsersModule } from './users/users.module';
-import { MessagesModule } from './messages/messages.module';
 import { User } from './users/entities/user.entity';
 import { Ticket } from './tickets/entities/ticket.entity';
 import { Comment } from './tickets/entities/comment.entity';
+import { MessagesModule } from './messages/messages.module';
 
 const postgresConnection = {
   type: 'postgres',
