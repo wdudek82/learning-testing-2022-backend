@@ -1,22 +1,21 @@
 import {
   Body,
-  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
   Param,
   Patch,
   Post,
-  UseInterceptors,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dtos/update-user.dto';
-import { Serialize, SerializeInterceptor } from '../interceptors/serialize.interceptor';
+import { Serialize } from '../interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
 
 @Controller('auth')
+@Serialize(UserDto)
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
@@ -28,20 +27,18 @@ export class UsersController {
 
   @Post('/signin')
   authenticateUser(@Body() body: any): any {
+    // TODO: Implement
     console.log(body);
     return {};
   }
 
-  @Serialize(UserDto)
   @Get('/users')
   getUsers(): Promise<User[]> {
     return this.usersService.find();
   }
 
-  @Serialize(UserDto)
   @Get('/users/:id')
   getUser(@Param('id') id: string): Promise<User> {
-    console.log('handler is running');
     return this.usersService.findOne(+id);
   }
 
