@@ -9,14 +9,6 @@ import { User } from './users/entities/user.entity';
 import { Ticket } from './tickets/entities/ticket.entity';
 import { Comment } from './tickets/entities/comment.entity';
 
-const sqliteConnection = {
-  type: 'sqlite',
-  database: 'db.sqlite',
-  entities: [User, Ticket],
-  migrations: [],
-  synchronize: true,
-};
-
 const postgresConnection = {
   type: 'postgres',
   host: process.env.HOST || 'localhost',
@@ -29,7 +21,6 @@ const postgresConnection = {
   entities: [User, Ticket, Comment],
   subscribers: [],
   migrations: [],
-  // url: process.env.DATABASE_URL,
 };
 
 if (process.env.SSL_ENABLED) {
