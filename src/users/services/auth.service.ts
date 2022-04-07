@@ -4,6 +4,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UsersService } from './users.service';
 import { CreateUserDto } from '../dtos/create-user.dto';
+import { promisify } from 'util';
+import { randomBytes, scrypt as _scrypt } from 'crypto';
+
+const scrypt = promisify(_scrypt);
 
 @Injectable()
 export class AuthService {
@@ -12,17 +16,17 @@ export class AuthService {
     private usersService: UsersService,
   ) {}
 
-  async signup(newUserDto: CreateUserDto): Promise<User> {
-    const user = await this.usersService.findOneByEmail(newUserDto.email);
+  async signup(createUserDto: CreateUserDto): Promise<User> {
+    const user = await this.usersService.findOneByEmail(createUserDto.email);
     if (user) {
       throw new BadRequestException('email in use');
     }
 
-    // see if email is in use
-    // hash the users password
-    // create a new user and save it
-    // return the user
+    // TODO: replace with bcryptjs?
+    const salt = randomBytes(8).toString('hex');
+    const hash = (await scrypt(createUserDto.password, salt, 32)) as Buffer;
+    createUserDto.password = `${salt}.${hash.toString('hex')}`;
 
-    return this.usersService.create(newUserDto);
+    return this.usersService.create(createUserDto);
   }
 }
