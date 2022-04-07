@@ -31,6 +31,12 @@ const postgresConnection = {
   entities: [User, Ticket, Comment],
   subscribers: [],
   migrations: [],
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
 };
 
 @Module({
