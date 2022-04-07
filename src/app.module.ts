@@ -25,7 +25,7 @@ const postgresConnection = {
   password: 'learntesting',
   database: 'learntesting',
   synchronize: true,
-  logging: true,
+  logging: false,
   entities: [User, Ticket, Comment],
   subscribers: [],
   migrations: [],

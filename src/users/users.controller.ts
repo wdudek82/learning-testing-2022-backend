@@ -13,6 +13,8 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { SerializeInterceptor } from '../interceptors/serialize.interceptor';
+import { UserDto } from './dtos/user.dto';
 
 @Controller('auth')
 export class UsersController {
@@ -30,15 +32,16 @@ export class UsersController {
     return {};
   }
 
-  @UseInterceptors(ClassSerializerInterceptor)
+  @UseInterceptors(new SerializeInterceptor(UserDto))
   @Get('/users')
   getUsers(): Promise<User[]> {
     return this.usersService.find();
   }
 
-  @UseInterceptors(ClassSerializerInterceptor)
+  @UseInterceptors(new SerializeInterceptor(UserDto))
   @Get('/users/:id')
   getUser(@Param('id') id: string): Promise<User> {
+    console.log('handler is running');
     return this.usersService.findOne(+id);
   }
 

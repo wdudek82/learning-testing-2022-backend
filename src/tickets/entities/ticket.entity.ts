@@ -68,6 +68,10 @@ export class Ticket {
   @OneToMany(() => Comment, (comment) => comment.ticket)
   comments: Comment[];
 
+  // estimatedTime: number;
+  // dueDate: Date;
+  // type: TicketType; // improvement, bug, story
+
   // TODO: Create entity "Attachment".
   // @Column()
   // attachments: Attachments[];
