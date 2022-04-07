@@ -17,7 +17,7 @@ export class UsersController {
 
   @Get('/:id')
   getUser(@Param('id') id: string): Promise<User> {
-    return this.usersService.findOne(+id);
+    return this.usersService.findOneById(+id);
   }
 
   @Patch('/:id')
