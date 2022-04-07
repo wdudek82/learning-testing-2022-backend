@@ -19,25 +19,30 @@ const sqliteConnection = {
 
 const postgresConnection = {
   type: 'postgres',
-  url:
-    process.env.DATABASE_URL || 'jdbc:postgresql://localhost:5432/learntesting',
-  // host: process.env.HOST || 'localhost',
-  // port: 5432,
-  // username: process.env.USER || 'learntesting',
-  // password: process.env.PASSWORD || 'learntesting',
-  // database: process.env.DATABASE || 'learntesting',
+  host: process.env.HOST || 'localhost',
+  port: 5432,
+  username: process.env.USER || 'learntesting',
+  password: process.env.PASSWORD || 'learntesting',
+  database: process.env.DATABASE || 'learntesting',
   synchronize: true,
   logging: false,
   entities: [User, Ticket, Comment],
   subscribers: [],
   migrations: [],
-  ssl: true,
-  extra: {
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  },
+  // url: process.env.DATABASE_URL,
 };
+
+if (process.env.SSL_ENABLED) {
+  const dbSslConfig = {
+    ssl: true,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
+  };
+  Object.assign(postgresConnection, dbSslConfig);
+}
 
 @Module({
   imports: [
