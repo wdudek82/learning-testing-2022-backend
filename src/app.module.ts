@@ -19,12 +19,14 @@ const sqliteConnection = {
 
 const postgresConnection = {
   type: 'postgres',
-  host: process.env.HOST || 'localhost',
-  port: 5432,
-  username: process.env.USER || 'learntesting',
-  password: process.env.PASSWORD || 'learntesting',
-  database: process.env.DATABASE || 'learntesting',
-  synchronize: process.env.SYNCHRONIZE || true,
+  url:
+    process.env.DATABASE_URL || 'jdbc:postgresql://localhost:5432/learntesting',
+  // host: process.env.HOST || 'localhost',
+  // port: 5432,
+  // username: process.env.USER || 'learntesting',
+  // password: process.env.PASSWORD || 'learntesting',
+  // database: process.env.DATABASE || 'learntesting',
+  synchronize: true,
   logging: false,
   entities: [User, Ticket, Comment],
   subscribers: [],
