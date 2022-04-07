@@ -20,13 +20,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/auth/signup",
+					"raw": "http://localhost:4000/api/auth/signup",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"auth",
 						"signup"
 					]
@@ -52,13 +53,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/auth/users",
+					"raw": "http://localhost:4000/api/auth/users",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"auth",
 						"users"
 					]
@@ -72,16 +74,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/auth/users/1",
+					"raw": "http://localhost:4000/api/auth/users/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"auth",
 						"users",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -102,13 +105,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/auth/users/1",
+					"raw": "http://localhost:4000/api/auth/users/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"auth",
 						"users",
 						"1"
@@ -123,13 +127,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/auth/users/1",
+					"raw": "http://localhost:4000/api/auth/users/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"auth",
 						"users",
 						"1"
@@ -144,13 +149,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/tickets?title=bug",
+					"raw": "http://localhost:4000/api/tickets?title=bug",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"tickets"
 					],
 					"query": [
@@ -169,13 +175,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/tickets/7",
+					"raw": "http://localhost:4000/api/tickets/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"tickets",
 						"7"
 					]
@@ -198,13 +205,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/tickets",
+					"raw": "http://localhost:4000/api/tickets",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"tickets"
 					]
 				}
@@ -217,13 +225,14 @@
 				"method": "PATCH",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/tickets/1",
+					"raw": "http://localhost:4000/api/tickets/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"tickets",
 						"1"
 					]
@@ -237,13 +246,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/tickets/4",
+					"raw": "http://localhost:4000/api/tickets/4",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"tickets",
 						"4"
 					]
@@ -269,13 +279,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/tickets/7/comments",
+					"raw": "http://localhost:4000/api/tickets/7/comments",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"tickets",
 						"7",
 						"comments"
@@ -299,13 +310,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/tickets/7/comments",
+					"raw": "http://localhost:4000/api/tickets/7/comments",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"tickets",
 						"7",
 						"comments"
@@ -329,13 +341,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/tickets/7/comments/5",
+					"raw": "http://localhost:4000/api/tickets/7/comments/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"tickets",
 						"7",
 						"comments",
@@ -351,13 +364,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/tickets/7/comments/6",
+					"raw": "http://localhost:4000/api/tickets/7/comments/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"api",
 						"tickets",
 						"7",
 						"comments",
