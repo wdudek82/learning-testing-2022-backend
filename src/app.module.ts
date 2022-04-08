@@ -11,11 +11,7 @@ import { MessagesModule } from './messages/messages.module';
 
 const postgresConnection = {
   type: 'postgres',
-  host: process.env.HOST || 'localhost',
   port: 5432,
-  username: process.env.USER || 'learntesting',
-  password: process.env.PASSWORD || 'learntesting',
-  database: process.env.DATABASE || 'learntesting',
   synchronize: true,
   logging: false,
   entities: [User, Ticket, Comment],
@@ -23,16 +19,27 @@ const postgresConnection = {
   migrations: [],
 };
 
-if (process.env.SSL_ENABLED) {
-  const dbSslConfig = {
-    ssl: true,
-    extra: {
-      ssl: {
-        rejectUnauthorized: false,
-      },
+const prodDbConfig = {
+  url: process.env.DATABASE_URL,
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
     },
-  };
-  Object.assign(postgresConnection, dbSslConfig);
+  },
+};
+
+const devDbConfig = {
+  host: 'localhost',
+  username: 'learntesting',
+  password: 'learntesting',
+  database: 'learntesting',
+};
+
+if (process.env.PROD) {
+  Object.assign(postgresConnection, prodDbConfig);
+} else {
+  Object.assign(postgresConnection, devDbConfig);
 }
 
 @Module({
