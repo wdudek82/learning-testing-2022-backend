@@ -3,6 +3,9 @@ import { AppModule } from './app.module';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const cookieSession = require('cookie-session');
+
 function setupSwagger(app: INestApplication): void {
   const config = new DocumentBuilder()
     .setTitle('Learning Testing 2022')
@@ -15,6 +18,11 @@ function setupSwagger(app: INestApplication): void {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
+  app.use(
+    cookieSession({
+      keys: ['foo'],
+    }),
+  );
   app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({

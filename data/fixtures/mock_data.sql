@@ -9,10 +9,10 @@ ALTER SEQUENCE tickets_id_seq RESTART;
 ALTER SEQUENCE comments_id_seq RESTART;
 
 -- users
-INSERT INTO users (email, name, password, role, created_at, updated_at, deleted_at) VALUES ('johndoe@testing.com', 'John Doe', 'admin123', 'user', DATE('now'), DATE('now'), null);
-INSERT INTO users (email, name, password, role, created_at, updated_at, deleted_at) VALUES ('pieter.hollenbeck@testing.com', 'Pieter Hollenbeck', 'passwd123', 'user', DATE('now'), DATE('now'), null);
-INSERT INTO users (email, name, password, role, created_at, updated_at, deleted_at) VALUES ('joostvanhoof@testing.com', 'Joost van Hoof', 'verydifficultpasswd', 'admin', DATE('now'), DATE('now'), null);
-INSERT INTO users (email, name, password, role, created_at, updated_at, deleted_at) VALUES ('romankowalski@testing.com', 'Roman Maria Kowalki', 'dupa123', 'admin', DATE('now'), DATE('now'), null);
+INSERT INTO users (email, name, password, role, created_at, updated_at, deleted_at) VALUES ('johndoe@testing.com', 'John Doe', '3a34ebe9037e9e47.98d5462c42ed89fcc2c739edb646f3ac0318f066dbf94fab20c6e061591d3f73', 'user', DATE('now'), DATE('now'), null);
+INSERT INTO users (email, name, password, role, created_at, updated_at, deleted_at) VALUES ('pieter.hollenbeck@testing.com', 'Pieter Hollenbeck', '3a34ebe9037e9e47.98d5462c42ed89fcc2c739edb646f3ac0318f066dbf94fab20c6e061591d3f73', 'user', DATE('now'), DATE('now'), null);
+INSERT INTO users (email, name, password, role, created_at, updated_at, deleted_at) VALUES ('joostvanhoof@testing.com', 'Joost van Hoof', '3a34ebe9037e9e47.98d5462c42ed89fcc2c739edb646f3ac0318f066dbf94fab20c6e061591d3f73', 'admin', DATE('now'), DATE('now'), null);
+INSERT INTO users (email, name, password, role, created_at, updated_at, deleted_at) VALUES ('romankowalski@testing.com', 'Roman Maria Kowalki', '3a34ebe9037e9e47.98d5462c42ed89fcc2c739edb646f3ac0318f066dbf94fab20c6e061591d3f73', 'admin', DATE('now'), DATE('now'), null);
 
 -- tickets
 INSERT INTO tickets (title, description, priority, status, created_at, updated_at, "relatedTicketId", "authorId", "assigneeId") VALUES ('A Bug', 'This is a bug report', 'low', 'to_do', DATE('now'), DATE('now'), null, 1, null);

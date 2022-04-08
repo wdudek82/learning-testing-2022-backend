@@ -11,6 +11,9 @@ export class CreateUserDto {
   @IsString()
   password: string;
 
+  @IsString()
+  repeatPassword: string;
+
   @IsEnum(Role)
   role: Role = Role.USER;
 }

@@ -6,7 +6,6 @@ import {
   Param,
   Post,
   Patch,
-  Query,
 } from '@nestjs/common';
 import { TicketsService } from './tickets.service';
 import { Ticket } from './entities/ticket.entity';
@@ -21,8 +20,8 @@ export class TicketsController {
   ) {}
 
   @Get()
-  getTickets(@Query('title') title: string): Promise<Ticket[]> {
-    return this.ticketsService.findAll(title);
+  getTickets(): Promise<Ticket[]> {
+    return this.ticketsService.findAll();
   }
 
   @Get('/:id')

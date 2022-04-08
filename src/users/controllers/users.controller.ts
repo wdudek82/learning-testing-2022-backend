@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  NotFoundException,
+  Param,
+  Patch,
+  Session,
+} from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { User } from '../entities/user.entity';
 import { UpdateUserDto } from '../dtos/update-user.dto';
@@ -9,6 +18,15 @@ import { UserDto } from '../dtos/user.dto';
 @Serialize(UserDto)
 export class UsersController {
   constructor(private usersService: UsersService) {}
+
+  @Get('/whoami')
+  async whoAmI(@Session() session: any): Promise<User> {
+    try {
+      return await this.usersService.findOneById(session.userId);
+    } catch (NotFoundException) {
+      return null;
+    }
+  }
 
   @Get()
   getUsers(): Promise<User[]> {

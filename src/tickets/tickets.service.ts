@@ -29,11 +29,8 @@ export class TicketsService {
     return this.repo.save(ticket);
   }
 
-  findAll(title = ''): Promise<Ticket[]> {
-    return this.repo
-      .createQueryBuilder('ticket')
-      .where('ticket.title ilike :title', { title: `%${title}%` })
-      .getMany();
+  findAll(): Promise<Ticket[]> {
+    return this.repo.find();
   }
 
   async findById(id: number): Promise<Ticket | null> {
