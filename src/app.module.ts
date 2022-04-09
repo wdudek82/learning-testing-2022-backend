@@ -51,7 +51,6 @@ function getDbConfig(config: ConfigService): any {
       inject: [ConfigService],
       useFactory: getDbConfig,
     }),
-    // TypeOrmModule.forRoot(getDbConfig()),
     TicketsModule,
     UsersModule,
   ],
