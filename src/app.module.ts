@@ -7,16 +7,10 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { Ticket } from './tickets/entities/ticket.entity';
 import { Comment } from './tickets/entities/comment.entity';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as path from 'path';
 
-enum NODE_ENV {
-  DEV = 'dev',
-  TEST = 'test',
-  PROD = 'prod',
-}
-
-function getDbConfig(): any {
+function getDbConfig(config: ConfigService): any {
   const dbConfig = {
     type: 'postgres',
     port: 5432,
@@ -28,11 +22,11 @@ function getDbConfig(): any {
   };
   let envDbConfig: any = {
     host: 'localhost',
-    username: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DB_NAME,
+    username: config.get<string>('USER'),
+    password: config.get<string>('PASSWORD'),
+    database: config.get<string>('DB_NAME'),
   };
-  if (process.env.NODE_ENV == NODE_ENV.PROD) {
+  if (process.env.NODE_ENV == 'prod') {
     envDbConfig = {
       url: process.env.DATABASE_URL,
       ssl: true,
@@ -53,7 +47,11 @@ function getDbConfig(): any {
       isGlobal: true,
       envFilePath: path.join(`.env.${process.env.NODE_ENV}`),
     }),
-    TypeOrmModule.forRoot(getDbConfig()),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: getDbConfig,
+    }),
+    // TypeOrmModule.forRoot(getDbConfig()),
     TicketsModule,
     UsersModule,
   ],
