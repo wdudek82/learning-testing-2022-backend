@@ -28,6 +28,13 @@ export class AuthService {
       throw new BadRequestException('email in use');
     }
 
+    const { password, confirmPassword } = createUserDto;
+    if (password !== confirmPassword) {
+      throw new BadRequestException(
+        'password and confirm password does not match',
+      );
+    }
+
     // TODO: replace with bcryptjs?
     const salt = randomBytes(8).toString('hex');
     const hash = (await scrypt(createUserDto.password, salt, 32)) as Buffer;
