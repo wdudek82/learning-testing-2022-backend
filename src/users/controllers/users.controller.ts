@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { User } from '../entities/user.entity';
 import { UpdateUserDto } from '../dtos/update-user.dto';
@@ -19,16 +19,19 @@ export class UsersController {
   }
 
   @Get()
+  @UseGuards(AuthGuard)
   getUsers(): Promise<User[]> {
     return this.usersService.find();
   }
 
   @Get('/:id')
+  @UseGuards(AuthGuard)
   getUser(@Param('id') id: string): Promise<User> {
     return this.usersService.findOneById(+id);
   }
 
   @Patch('/:id')
+  @UseGuards(AuthGuard)
   updateUser(
     @Param('id') id: number,
     @Body() body: UpdateUserDto,
@@ -37,6 +40,7 @@ export class UsersController {
   }
 
   @Delete('/:id')
+  @UseGuards(AuthGuard)
   softDeleteUser(@Param('id') id: string): Promise<void> {
     return this.usersService.softDelete(+id);
   }

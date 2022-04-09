@@ -21,7 +21,7 @@ export class AuthService {
     private usersService: UsersService,
   ) {}
 
-  async signup(createUserDto: CreateUserDto): Promise<User> {
+  async createUser(createUserDto: CreateUserDto): Promise<User> {
     const user = await this.usersService.findOneByEmail(createUserDto.email);
     if (user) {
       throw new BadRequestException('email in use');
