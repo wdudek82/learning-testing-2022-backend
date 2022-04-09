@@ -1,18 +1,10 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  NotFoundException,
-  Param,
-  Patch,
-  Session,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { User } from '../entities/user.entity';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { Serialize } from '../../interceptors/serialize.interceptor';
 import { UserDto } from '../dtos/user.dto';
+import { CurrentUser } from '../decorators/current-user.decorator';
 
 @Controller('users')
 @Serialize(UserDto)
@@ -20,12 +12,8 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get('/whoami')
-  async whoAmI(@Session() session: any): Promise<User> {
-    try {
-      return await this.usersService.findOneById(session.userId);
-    } catch (NotFoundException) {
-      return null;
-    }
+  whoAmI(@CurrentUser() user: User): User | null {
+    return user;
   }
 
   @Get()
