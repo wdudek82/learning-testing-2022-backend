@@ -5,14 +5,16 @@ import {
   Get,
   Param,
   Post,
-  Patch,
+  Patch, UseGuards,
 } from '@nestjs/common';
 import { TicketsService } from './tickets.service';
 import { Ticket } from './entities/ticket.entity';
 import { Comment } from './entities/comment.entity';
 import { CommentsService } from './comments.service';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('tickets')
+@UseGuards(AuthGuard)
 export class TicketsController {
   constructor(
     private ticketsService: TicketsService,
