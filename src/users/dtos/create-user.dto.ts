@@ -12,7 +12,7 @@ export class CreateUserDto {
   password: string;
 
   @IsString()
-  repeatPassword: string;
+  confirmPassword: string;
 
   @IsEnum(Role)
   role: Role = Role.USER;

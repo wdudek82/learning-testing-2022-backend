@@ -58,5 +58,3 @@ function getDbConfig(config: ConfigService): any {
   providers: [AppService],
 })
 export class AppModule {}
-
-console.log(process.env);
