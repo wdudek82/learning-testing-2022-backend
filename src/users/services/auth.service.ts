@@ -27,8 +27,8 @@ export class AuthService {
       throw new BadRequestException('email in use');
     }
 
-    const { password, confirmPassword } = createUserDto;
-    if (password !== confirmPassword) {
+    const { password, passwordConfirmation } = createUserDto;
+    if (password !== passwordConfirmation) {
       throw new BadRequestException(
         'password and confirm password does not match',
       );

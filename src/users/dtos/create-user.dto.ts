@@ -12,7 +12,7 @@ export class CreateUserDto {
   password: string;
 
   @IsString()
-  confirmPassword: string;
+  passwordConfirmation: string;
 
   @IsEnum(Role)
   role: Role = Role.USER;

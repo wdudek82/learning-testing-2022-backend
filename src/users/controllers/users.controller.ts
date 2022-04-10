@@ -3,8 +3,12 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   Param,
   Patch,
+  Query,
+  Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
@@ -12,8 +16,8 @@ import { User } from '../entities/user.entity';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { Serialize } from '../../interceptors/serialize.interceptor';
 import { UserDto } from '../dtos/user.dto';
-import { CurrentUser } from '../decorators/current-user.decorator';
 import { AuthGuard } from '../../guards/auth.guard';
+import { Request, Response } from 'express';
 
 @Controller('users')
 @Serialize(UserDto)
@@ -22,12 +26,19 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get('/whoami')
-  whoAmI(@CurrentUser() user: User): User | null {
-    return user;
+  whoAmI(@Req() req: Request, @Res() res: Response): void {
+    const user = req['currentUser'];
+    res.status(HttpStatus.OK).json({
+      authenticated: !!user,
+      username: user?.name ?? null,
+    });
   }
 
   @Get()
-  getUsers(): Promise<User[]> {
+  getUsers(@Query('email') email: string): Promise<User | User[]> {
+    if (email) {
+      return this.usersService.findOneByEmail(email);
+    }
     return this.usersService.find();
   }
 

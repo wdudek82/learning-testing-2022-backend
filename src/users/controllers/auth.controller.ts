@@ -52,7 +52,6 @@ export class AuthController {
     throw new BadRequestException(
       'this endpoint has been temporarily disabled',
     );
-    return null;
   }
 
   @Post('/signin')

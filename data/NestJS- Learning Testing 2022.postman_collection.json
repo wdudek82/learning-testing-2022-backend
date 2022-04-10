@@ -9,13 +9,44 @@
 			"name": "Heroku",
 			"item": [
 				{
+					"name": "create-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sonya Blade\",\r\n    \"email\": \"sonya.blade@test.com\",\r\n    \"password\": \"password123\",\r\n    \"passwordConfirmation\": \"password123\",\r\n    \"role\": \"user\",\r\n    \"isActive\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://learning-testing-2022.herokuapp.com/api/auth/create-user",
+							"protocol": "https",
+							"host": [
+								"learning-testing-2022",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"create-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "signup",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"John\",\r\n    \"email\": \"john_doe@foo.com\",\r\n    \"password\": \"password123\"\r\n}",
+							"raw": "{\r\n    \"name\": \"John\",\r\n    \"email\": \"john_doe@test.com\",\r\n    \"password\": \"password123\",\r\n    \"confirmPassword\": \"password123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -65,6 +96,59 @@
 								"api",
 								"auth",
 								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"john_doe@foo.com\",\r\n    \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://learning-testing-2022.herokuapp.com/api/auth/signout",
+							"protocol": "https",
+							"host": [
+								"learning-testing-2022",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "whoami",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://learning-testing-2022.herokuapp.com/api/users/whoami",
+							"protocol": "https",
+							"host": [
+								"learning-testing-2022",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"whoami"
 							]
 						}
 					},
@@ -377,6 +461,66 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "create-user Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Noob Saibot\",\r\n    \"email\": \"noob.saibot@test.com\",\r\n    \"password\": \"password123\",\r\n    \"confirmPassword\": \"password123\",\r\n    \"role\": \"moderator\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/create-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"create-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-user Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Noob Saibot\",\r\n    \"email\": \"noob.saibot@test.com\",\r\n    \"password\": \"password123\",\r\n    \"confirmPassword\": \"password123\",\r\n    \"role\": \"moderator\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/create-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"create-user"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -384,13 +528,43 @@
 			"name": "Local",
 			"item": [
 				{
+					"name": "create-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sonya Blade\",\r\n    \"email\": \"sonya.blade@test.com\",\r\n    \"password\": \"password123\",\r\n    \"passwordConfirmation\": \"password123\",\r\n    \"role\": \"user\",\r\n    \"isActive\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/create-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"create-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "signup",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"John\",\r\n    \"email\": \"john_doe@foo.com\",\r\n    \"password\": \"password123\"\r\n}",
+							"raw": "{\r\n    \"name\": \"John\",\r\n    \"email\": \"johndoe1@foo.com\",\r\n    \"password\": \"password123\",\r\n    \"confirmPassword\": \"password1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -420,7 +594,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"John\",\r\n    \"email\": \"john_doe@foo.com\",\r\n    \"password\": \"password123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"joostvanhoof@testing.com\",\r\n    \"password\": \"password123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -438,6 +612,48 @@
 								"api",
 								"auth",
 								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/auth/signout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"signout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "whoami",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/whoami",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"whoami"
 							]
 						}
 					},
@@ -579,7 +795,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/tickets/1",
+							"raw": "http://localhost:8080/api/tickets/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -588,7 +804,7 @@
 							"path": [
 								"api",
 								"tickets",
-								"1"
+								"2"
 							]
 						}
 					},
