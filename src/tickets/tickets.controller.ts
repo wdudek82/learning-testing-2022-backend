@@ -14,7 +14,7 @@ import { CommentsService } from './comments.service';
 import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('tickets')
-@UseGuards(AuthGuard)
+// @UseGuards(AuthGuard)
 export class TicketsController {
   constructor(
     private ticketsService: TicketsService,

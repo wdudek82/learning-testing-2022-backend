@@ -26,14 +26,14 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('/create-user')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   createUser(
     @Body() body: CreateUserDto,
     @CurrentUser() currentUser: User,
   ): Promise<User> {
-    if (currentUser.role !== Role.ADMIN) {
+    if (currentUser?.role !== Role.ADMIN && body.isActive) {
       throw new UnauthorizedException(
-        'only admins are authorized to create new users',
+        'only admins are authorized to create active users',
       );
     }
     return this.authService.createUser(body);

@@ -15,6 +15,9 @@ export class UserDto {
   role: Role;
 
   @Expose()
+  isActive: boolean;
+
+  @Expose()
   createdAt: Date;
 
   @Expose()

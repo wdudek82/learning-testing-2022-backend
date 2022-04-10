@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  UseGuards,
+} from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { User } from '../entities/user.entity';
 import { UpdateUserDto } from '../dtos/update-user.dto';
@@ -9,17 +17,16 @@ import { AuthGuard } from '../../guards/auth.guard';
 
 @Controller('users')
 @Serialize(UserDto)
+// @UseGuards(AuthGuard)
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get('/whoami')
-  @UseGuards(AuthGuard)
   whoAmI(@CurrentUser() user: User): User | null {
     return user;
   }
 
   @Get()
-  @UseGuards(AuthGuard)
   getUsers(): Promise<User[]> {
     return this.usersService.find();
   }
@@ -31,7 +38,6 @@ export class UsersController {
   }
 
   @Patch('/:id')
-  @UseGuards(AuthGuard)
   updateUser(
     @Param('id') id: number,
     @Body() body: UpdateUserDto,
@@ -40,7 +46,6 @@ export class UsersController {
   }
 
   @Delete('/:id')
-  @UseGuards(AuthGuard)
   softDeleteUser(@Param('id') id: string): Promise<void> {
     return this.usersService.softDelete(+id);
   }
