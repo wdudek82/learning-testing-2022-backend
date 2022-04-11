@@ -6,6 +6,7 @@ import {
   HttpStatus,
   Param,
   Patch,
+  Post,
   Query,
   Req,
   Res,
@@ -46,6 +47,13 @@ export class UsersController {
   @UseGuards(AuthGuard)
   getUser(@Param('id') id: string): Promise<User> {
     return this.usersService.findOneById(+id);
+  }
+
+  @Post()
+  getFilteredUsers(@Body() body: any): Promise<User[]> {
+    // TODO: Implement users filters.
+    // TODO: Use this endpoint instead getUsers with "email" query param.
+    return Promise.resolve([]);
   }
 
   @Patch('/:id')

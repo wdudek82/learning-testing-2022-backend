@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { CreateUserDto } from '../dtos/create-user.dto';
 
@@ -13,9 +13,12 @@ export class UsersService {
     return this.repo.save(user);
   }
 
-  async findOneById(id: number): Promise<User> {
+  async findOneById(
+    id: number,
+    activityState: boolean[] = [true],
+  ): Promise<User> {
     if (!id) return;
-    const user = await this.repo.findOneBy({ id });
+    const user = await this.repo.findOneBy({ id, isActive: In(activityState) });
     if (!user) {
       throw new NotFoundException('user not found');
     }
@@ -26,8 +29,8 @@ export class UsersService {
     return await this.repo.findOneBy({ email });
   }
 
-  find(): Promise<User[]> {
-    return this.repo.find();
+  find(activityState: boolean[] = [true]): Promise<User[]> {
+    return this.repo.find({ where: { isActive: In(activityState) } });
   }
 
   async update(id: number, attrs: Partial<User>): Promise<User> {
