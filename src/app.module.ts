@@ -22,7 +22,7 @@ function getDbConfig(config: ConfigService): any {
   };
   let envDbConfig: any = {
     host: 'localhost',
-    username: config.get<string>('USER'),
+    username: config.get<string>('DB_USER'),
     password: config.get<string>('PASSWORD'),
     database: config.get<string>('DB_NAME'),
   };
