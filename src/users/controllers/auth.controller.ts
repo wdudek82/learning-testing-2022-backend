@@ -55,7 +55,7 @@ export class AuthController {
   }
 
   @Post('/signup')
-  async signup(
+  async signUp(
     @Body() body: CreateUserDto,
     @Session() session: any,
   ): Promise<User> {
@@ -70,18 +70,18 @@ export class AuthController {
   }
 
   @Post('/signin')
-  async authenticateUser(
+  async signIn(
     @Body() body: SigninUserDto,
     @Session() session: any,
   ): Promise<User> {
     const { email, password } = body;
-    const user = await this.authService.signin(email, password);
+    const user = await this.authService.signIn(email, password);
     session.userId = user.id;
     return user;
   }
 
   @Post('/signout')
-  signout(@Res() res: Response, @Session() session: any): void {
+  signOut(@Res() res: Response, @Session() session: any): void {
     const message = 'user has been logged out';
     session.userId = null;
     res.status(HttpStatus.RESET_CONTENT).json({ message });

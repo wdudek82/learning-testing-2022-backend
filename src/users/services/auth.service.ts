@@ -42,7 +42,7 @@ export class AuthService {
     return this.usersService.create(createUserDto);
   }
 
-  async signin(email: string, password: string): Promise<User> {
+  async signIn(email: string, password: string): Promise<User> {
     const user = await this.usersService.findOneByEmail(email);
     if (!user) {
       throw new NotFoundException('incorrect email');
