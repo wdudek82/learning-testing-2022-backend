@@ -31,7 +31,6 @@ export class UsersController {
   }
 
   @Get('/:id')
-  @UseGuards(AuthGuard)
   getUser(@Param('id') id: string): Promise<User> {
     return this.usersService.findOneById(+id);
   }

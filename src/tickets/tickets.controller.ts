@@ -5,7 +5,8 @@ import {
   Get,
   Param,
   Post,
-  Patch, UseGuards,
+  Patch,
+  UseGuards,
 } from '@nestjs/common';
 import { TicketsService } from './tickets.service';
 import { Ticket } from './entities/ticket.entity';

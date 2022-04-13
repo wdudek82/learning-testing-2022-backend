@@ -9,8 +9,10 @@ import { Ticket } from './tickets/entities/ticket.entity';
 import { Comment } from './tickets/entities/comment.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as path from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
-function getDbConfig(config: ConfigService): any {
+function getDbConfig(config: ConfigService): unknown {
   const dbConfig = {
     type: 'postgres',
     port: 5432,
@@ -20,7 +22,7 @@ function getDbConfig(config: ConfigService): any {
     subscribers: [],
     migrations: [],
   };
-  let envDbConfig: any = {
+  let envDbConfig: unknown = {
     host: 'localhost',
     username: config.get<string>('DB_USER'),
     password: config.get<string>('PASSWORD'),
@@ -50,6 +52,10 @@ function getDbConfig(config: ConfigService): any {
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: getDbConfig,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, 'client'),
+      exclude: ['/api*'],
     }),
     TicketsModule,
     UsersModule,
