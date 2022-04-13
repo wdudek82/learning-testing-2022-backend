@@ -20,7 +20,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
     origin: [
-      'localhost',
+      'http://localhost:4200',
       'https://wdudek82.github.io/learning-testing-2022-frontend',
     ],
     credentials: true,
