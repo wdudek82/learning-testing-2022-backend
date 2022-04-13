@@ -21,7 +21,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:4200',
-      'https://wdudek82.github.io/learning-testing-2022-frontend',
+      'https://wdudek82.github.io/learning-testing-2022-frontend:80',
     ],
     credentials: true,
   });
