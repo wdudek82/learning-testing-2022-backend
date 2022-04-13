@@ -18,7 +18,7 @@ import { AuthGuard } from '../../guards/auth.guard';
 
 @Controller('users')
 @Serialize(UserDto)
-// @UseGuards(AuthGuard)
+@UseGuards(AuthGuard)
 export class UsersController {
   constructor(private usersService: UsersService) {}
 

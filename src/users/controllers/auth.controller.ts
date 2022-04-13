@@ -30,7 +30,13 @@ export class AuthController {
     const user = req['currentUser'];
     res.status(HttpStatus.OK).json({
       authenticated: !!user,
-      username: user?.name ?? null,
+      signedInUser: !!user
+        ? {
+            email: user.email,
+            name: user.name,
+            role: user.role,
+          }
+        : null,
     });
   }
 
