@@ -19,11 +19,7 @@ function setupSwagger(app: INestApplication): void {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: [
-      'http://localhost:4200',
-      'https://wdudek82.github.io/learning-testing-2022-frontend',
-      'https://wdudek82.github.io',
-    ],
+    origin: ['http://localhost:4200', 'https://wdudek82.github.io:80'],
     credentials: true,
   });
   app.use(
