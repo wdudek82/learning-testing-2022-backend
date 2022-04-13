@@ -17,7 +17,14 @@ function setupSwagger(app: INestApplication): void {
 }
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    origin: [
+      'localhost',
+      'https://wdudek82.github.io/learning-testing-2022-frontend',
+    ],
+    credentials: true,
+  });
   app.use(
     cookieSession({
       keys: ['foo'],
