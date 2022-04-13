@@ -47,6 +47,9 @@ export class AuthService {
     if (!user) {
       throw new NotFoundException('incorrect email');
     }
+    if (!user.isActive) {
+      throw new BadRequestException('inactive account');
+    }
 
     const [salt, storedHash] = user.password.split('.');
 

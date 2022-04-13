@@ -1,14 +1,15 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import {
   BadRequestException,
   Body,
   Controller,
+  Get,
   HttpStatus,
   Post,
+  Req,
   Res,
   Session,
   UnauthorizedException,
-  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { User } from '../entities/user.entity';
@@ -18,12 +19,20 @@ import { SigninUserDto } from '../dtos/sigin-user.dto';
 import { UserDto } from '../dtos/user.dto';
 import { CurrentUser } from '../decorators/current-user.decorator';
 import { Role } from '../enums';
-import { AuthGuard } from '../../guards/auth.guard';
 
 @Controller('auth')
 @Serialize(UserDto)
 export class AuthController {
   constructor(private authService: AuthService) {}
+
+  @Get('/whoami')
+  whoAmI(@Req() req: Request, @Res() res: Response): void {
+    const user = req['currentUser'];
+    res.status(HttpStatus.OK).json({
+      authenticated: !!user,
+      username: user?.name ?? null,
+    });
+  }
 
   @Post('/create-user')
   // @UseGuards(AuthGuard)
