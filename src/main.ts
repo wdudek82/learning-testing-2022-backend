@@ -28,7 +28,7 @@ async function bootstrap() {
       keys: ['key1'],
       sameSite: 'none',
       secure: true,
-      // httpOnly: false,
+      httpOnly: false,
     }),
   );
   app.setGlobalPrefix('api');
