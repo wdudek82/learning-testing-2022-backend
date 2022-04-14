@@ -23,7 +23,7 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
-  app.use(cookieSession({}));
+  app.use(cookieSession({ keys: ['secretkey'] }));
   app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({
