@@ -26,8 +26,8 @@ async function bootstrap() {
   app.use(
     cookieSession({
       keys: ['key1'],
-      sameSite: 'none',
-      secure: false,
+      // sameSite: 'none',
+      // secure: false,
       httpOnly: false,
     }),
   );
