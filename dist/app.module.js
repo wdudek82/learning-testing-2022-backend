@@ -64,7 +64,7 @@ AppModule = __decorate([
                 useFactory: getDbConfig,
             }),
             serve_static_1.ServeStaticModule.forRoot({
-                rootPath: (0, path_1.join)(__dirname, '..', 'client'),
+                rootPath: (0, path_1.join)(__dirname, '..', 'learning-testing-2022-frontend'),
                 exclude: ['/api*'],
             }),
             tickets_module_1.TicketsModule,
