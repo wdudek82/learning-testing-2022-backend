@@ -54,7 +54,7 @@ function getDbConfig(config: ConfigService): any {
       useFactory: getDbConfig,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'learning-testing-2022-frontend'),
+      rootPath: join(__dirname, 'client'),
       exclude: ['/api*'],
     }),
     TicketsModule,
