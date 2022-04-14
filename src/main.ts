@@ -26,9 +26,9 @@ async function bootstrap() {
   app.use(
     cookieSession({
       keys: ['key1'],
-      // sameSite: 'none',
-      // secure: false,
-      httpOnly: false,
+      sameSite: 'none',
+      secure: true,
+      // httpOnly: false,
     }),
   );
   app.setGlobalPrefix('api');
