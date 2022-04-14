@@ -27,7 +27,7 @@ async function bootstrap() {
     cookieSession({
       keys: ['key1'],
       sameSite: 'none',
-      secure: false,
+      secure: true,
       httpOnly: false,
     }),
   );
