@@ -37,6 +37,7 @@ async function bootstrap() {
       sameSite: 'none',
       secure: false,
       maxAge: 1000 * 60 * 60, // 1 hour
+      domain: 'https://wdduek82.github.io',
     }),
   );
   app.setGlobalPrefix('api');
