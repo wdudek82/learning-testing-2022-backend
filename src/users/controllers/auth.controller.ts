@@ -87,7 +87,6 @@ export class AuthController {
     @Session() session: any,
   ): any {
     session.userId = null;
-    console.log('signedOut | session:', session.userId);
     res.status(HttpStatus.RESET_CONTENT).json({});
   }
 }
