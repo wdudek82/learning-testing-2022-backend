@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const cookieSession = require('cookie-session');
@@ -17,17 +18,18 @@ function setupSwagger(app: INestApplication): void {
 }
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors({
-    origin: [
-      'http://localhost:4200',
-      'https://wdudek82.github.io:80/*',
-    ],
+    origin: ['http://localhost:4200', 'https://wdudek82.github.io'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
   });
+  app.set('trust proxy', 1);
   app.use(
     cookieSession({
-      keys: ['foo'],
+      keys: ['key1'],
+      sameSite: 'none',
+      secure: true,
     }),
   );
   app.setGlobalPrefix('api');
