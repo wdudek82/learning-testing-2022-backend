@@ -33,11 +33,12 @@ async function bootstrap() {
   app.use(
     cookieSession({
       keys: ['key1'],
-      // secret: 'aVerySecretPhrase',
+      secret: 'aVerySecretPhrase',
       sameSite: 'none',
-      secure: false,
-      maxAge: 1000 * 60 * 60, // 1 hour
+      secure: true,
       domain: 'https://wdduek82.github.io',
+      path: '/',
+      maxAge: 1000 * 60 * 60, // 1 hour
     }),
   );
   app.setGlobalPrefix('api');
