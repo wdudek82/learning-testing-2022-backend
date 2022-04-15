@@ -81,9 +81,13 @@ export class AuthController {
   }
 
   @Post('/signout')
-  signOut(@Res() res: Response, @Session() session: any): void {
-    const message = 'user has been logged out';
+  signOut(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Session() session: any,
+  ): any {
     session.userId = null;
-    res.status(HttpStatus.RESET_CONTENT).json({ message });
+    console.log('signedOut | session:', session.userId);
+    res.status(HttpStatus.RESET_CONTENT).json({});
   }
 }
