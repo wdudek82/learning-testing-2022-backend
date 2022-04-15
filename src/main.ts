@@ -5,8 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const session = require('express-session');
-// const cookieSession = require('cookie-session');
+const cookieSession = require('cookie-session');
 
 function setupSwagger(app: INestApplication): void {
   const config = new DocumentBuilder()
@@ -32,28 +31,14 @@ async function bootstrap() {
     ],
     credentials: true,
   });
-  // app.set('trust proxy', 1);
+  app.set('trust proxy', 1);
   app.use(
-    session({
-      secret: 'my-secret',
-      cookie: {
-        sameSite: 'none',
-        secure: true,
-      },
+    cookieSession({
+      keys: ['key1'],
+      sameSite: 'none',
+      secure: true,
     }),
   );
-  // app.use(
-  //   cookieSession({
-  //     name: 'session',
-  //     keys: ['key1'],
-  //     secret: 'aVerySecretPhrase',
-  //     sameSite: 'none',
-  //     secure: true,
-  //     domain: 'https://wdduek82.github.io',
-  //     path: '/',
-  //     maxAge: 1000 * 60 * 60, // 1 hour
-  //   }),
-  // );
   app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({
