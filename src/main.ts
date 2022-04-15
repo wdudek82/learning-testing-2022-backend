@@ -22,13 +22,6 @@ async function bootstrap() {
     origin: ['http://localhost:4200', 'https://wdudek82.github.io'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: [
-      'Accept',
-      'Accept-Language',
-      'Content-Language',
-      'DPR',
-      'Save-Data',
-      'Viewport-Width',
-      'Width',
       'Authorization',
       'Cache-Control',
       'Content-Length',
