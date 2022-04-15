@@ -86,7 +86,6 @@ export class AuthController {
     @Res() res: Response,
     @Session() session: any,
   ): any {
-    session.userId = null;
     req.session = null;
     res.status(HttpStatus.RESET_CONTENT).json({});
   }
