@@ -81,11 +81,7 @@ export class AuthController {
   }
 
   @Post('/signout')
-  signOut(
-    @Req() req: Request,
-    @Res() res: Response,
-    @Session() session: any,
-  ): any {
+  signOut(@Req() req: Request, @Res() res: Response): any {
     req.session = null;
     res.status(HttpStatus.RESET_CONTENT).json({});
   }
