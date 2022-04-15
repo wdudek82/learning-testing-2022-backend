@@ -31,7 +31,6 @@ async function bootstrap() {
       'Pragma',
     ],
     credentials: true,
-    preflightContinue: true,
   });
   app.use(
     cookieSession({
