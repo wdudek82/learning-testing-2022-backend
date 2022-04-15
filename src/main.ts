@@ -16,8 +16,9 @@ function setupSwagger(app: INestApplication): void {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 }
-
 async function bootstrap() {
+  const isProd = process.env.NODE_ENV === 'prod';
+
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors({
     origin: ['http://localhost:4200', 'https://wdudek82.github.io'],
@@ -28,8 +29,8 @@ async function bootstrap() {
   app.use(
     cookieSession({
       keys: ['key1'],
-      sameSite: 'none',
-      secure: true,
+      sameSite: isProd ? 'none' : 'lax',
+      secure: isProd,
     }),
   );
   app.setGlobalPrefix('api');

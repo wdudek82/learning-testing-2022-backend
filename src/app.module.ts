@@ -28,7 +28,7 @@ function getDbConfig(config: ConfigService): unknown {
     password: config.get<string>('PASSWORD'),
     database: config.get<string>('DB_NAME'),
   };
-  if (process.env.NODE_ENV == 'prod') {
+  if (process.env.NODE_ENV === 'prod') {
     envDbConfig = {
       url: process.env.DATABASE_URL,
       ssl: true,
