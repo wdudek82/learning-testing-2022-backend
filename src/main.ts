@@ -21,15 +21,6 @@ async function bootstrap() {
   app.enableCors({
     origin: ['http://localhost:4200', 'https://wdudek82.github.io'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: [
-      'Authorization',
-      'Cache-Control',
-      'Content-Length',
-      'Content-Type',
-      'X-Custom-Header',
-      'Upgrade-Insecure-Requests',
-      'Pragma',
-    ],
     credentials: true,
   });
   app.use(
@@ -38,9 +29,9 @@ async function bootstrap() {
       // secret: 'aVerySecretPhrase',
       sameSite: 'none',
       secure: true,
-      httpOnly: true,
-      path: '/',
-      expires: 3600 * 10,
+      // httpOnly: true,
+      // path: '/',
+      // expires: 3600 * 10,
     }),
   );
   app.setGlobalPrefix('api');
