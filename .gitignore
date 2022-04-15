@@ -1,6 +1,7 @@
 # compiled output
-/dist
+#/dist # Needed for Heroku deployment
 /node_modules
+/src
 
 # Logs
 logs
