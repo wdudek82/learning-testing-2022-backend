@@ -21,7 +21,15 @@ async function bootstrap() {
   app.enableCors({
     origin: ['http://localhost:4200', 'https://wdudek82.github.io'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: ['Authorization', 'Content-Type'],
+    allowedHeaders: [
+      'Authorization',
+      'Cache-Control',
+      'Content-Length',
+      'Content-Type',
+      'X-Custom-Header',
+      'Upgrade-Insecure-Requests',
+      'Pragma',
+    ],
     credentials: true,
   });
   app.use(
