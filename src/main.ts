@@ -28,10 +28,7 @@ async function bootstrap() {
       keys: ['key1'],
       // secret: 'aVerySecretPhrase',
       sameSite: 'none',
-      secure: true,
-      // httpOnly: true,
-      // path: '/',
-      // expires: 3600 * 10,
+      secure: false,
     }),
   );
   app.setGlobalPrefix('api');
