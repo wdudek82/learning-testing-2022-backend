@@ -34,7 +34,8 @@ async function bootstrap() {
   });
   app.use(
     cookieSession({
-      keys: ['key1'],
+      // keys: ['key1'],
+      secret: 'aVerySecretPhrase',
       sameSite: 'none',
       secure: true,
       // httpOnly: false,
