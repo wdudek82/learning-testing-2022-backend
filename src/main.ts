@@ -36,6 +36,7 @@ async function bootstrap() {
       // secret: 'aVerySecretPhrase',
       sameSite: 'none',
       secure: false,
+      maxAge: 1000 * 60 * 60, // 1 hour
     }),
   );
   app.setGlobalPrefix('api');
