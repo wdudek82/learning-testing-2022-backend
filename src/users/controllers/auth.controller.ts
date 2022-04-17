@@ -32,6 +32,7 @@ export class AuthController {
       authenticated: !!user,
       signedInUser: !!user
         ? {
+            id: user.id,
             email: user.email,
             name: user.name,
             role: user.role,
