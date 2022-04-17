@@ -11,7 +11,7 @@ export enum Status {
   TO_DO = 'to_do',
   DESIGN = 'design',
   IN_PROGRESS = 'in_progress',
-  IN_REVIEW = 'in_review',
+  REVIEW = 'review',
   TESTING = 'testing',
   DONE = 'done',
   CANCELLED = 'cancelled',
